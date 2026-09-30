@@ -1,8 +1,8 @@
-# 部署与接入
+# Cairn 部署与接入
 
 按顺序完成下面各步。想让 Codex 代为执行时，把 CODEX_DEPLOY.md 交给它，本文件作为它的命令参考。
 
-文中的占位符：`learn.example.com` 为你的域名，`<你>` 为你的 GitHub 用户名，`<VPS IP>` 为服务器 IP。两个仓库：系统仓库 `<你>/learning-system`（公开），数据仓库 `<你>/learning-data`（私有）。
+文中的占位符：`learn.example.com` 为你的域名，`<你>` 为你的 GitHub 用户名，`<VPS IP>` 为服务器 IP。两个仓库：系统仓库 `<你>/cairn-system`（公开），数据仓库 `<你>/cairn-data`（私有）。本地归组到 Cairn/system 和 Cairn/data；服务器内部仍使用 learning 命名，包括用户、路径、服务、命令、环境变量和客户端连接名。
 
 ## 0. 准备
 
@@ -12,18 +12,20 @@
 ## 1. 建立数据仓库（笔记本上）
 
 ```bash
-git clone https://github.com/<你>/learning-system.git
-cp -r learning-system/templates/data learning-data
-cd learning-data
+mkdir -p Cairn
+cd Cairn
+git clone https://github.com/<你>/cairn-system.git system
+cp -r system/templates/data data
+cd data
 ```
 
-填写 profile/10-learner.md 和 profile/20-preferences.md，然后在 GitHub 上新建私有仓库 `learning-data`（不要初始化 README），推送：
+填写 profile/10-learner.md 和 profile/20-preferences.md，然后在 GitHub 上新建私有仓库 `cairn-data`（不要初始化 README），推送：
 
 ```bash
 git init -b main
 git add .
 git commit -m "建立学习数据仓库"
-git remote add origin git@github.com:<你>/learning-data.git
+git remote add origin git@github.com:<你>/cairn-data.git
 git push -u origin main
 ```
 
@@ -55,7 +57,7 @@ VPS 服务商的安全组里也要放行 22、80、443 和 22000（TCP）。
 系统仓库是公开的，用 HTTPS 克隆即可：
 
 ```bash
-git clone https://github.com/<你>/learning-system.git ~/system
+git clone https://github.com/<你>/cairn-system.git ~/system
 ```
 
 数据仓库需要读写权限。生成一把只用于它的部署密钥：
@@ -65,7 +67,7 @@ ssh-keygen -t ed25519 -f ~/.ssh/learning_data_deploy -N ""
 cat ~/.ssh/learning_data_deploy.pub
 ```
 
-把公钥添加到 learning-data 仓库的 Settings → Deploy keys，勾选 Allow write access。然后：
+把公钥添加到 cairn-data 仓库的 Settings → Deploy keys，勾选 Allow write access。然后：
 
 ```bash
 cat >> ~/.ssh/config << 'CFG'
@@ -74,7 +76,7 @@ Host github.com
   IdentitiesOnly yes
 CFG
 ssh-keyscan github.com >> ~/.ssh/known_hosts
-git clone git@github.com:<你>/learning-data.git ~/data
+git clone git@github.com:<你>/cairn-data.git ~/data
 ```
 
 ## 5. 安装依赖并运行测试

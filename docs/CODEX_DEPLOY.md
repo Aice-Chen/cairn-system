@@ -1,8 +1,8 @@
-# 部署任务说明（交给 Codex 执行）
+# Cairn 部署任务说明（交给 Codex 执行）
 
 ## 任务
 
-在一台新的 VPS 上部署学习系统，让各客户端通过 `https://<DOMAIN>/mcp` 使用它。DEPLOY.md 是命令参考；本文件规定分工、顺序、检查点和安全要求。
+在一台新的 VPS 上部署 Cairn 学习系统，让各客户端通过 `https://<DOMAIN>/mcp` 使用它。DEPLOY.md 是命令参考；本文件规定分工、顺序、检查点和安全要求。
 
 本次是部署任务。harness/guide.md 是学习会话的协作说明，与本任务无关。
 
@@ -14,11 +14,13 @@
 DOMAIN=            # 例如 learn.example.com
 SSH_HOST=          # 本机 ~/.ssh/config 中指向 VPS 的别名；登录用户需要能免密 sudo
 GITHUB_USER=
-SYSTEM_REPO=learning-system    # 公开
-DATA_REPO=learning-data        # 私有
+SYSTEM_REPO=cairn-system       # 公开
+DATA_REPO=cairn-data           # 私有
 TIMEZONE=Asia/Shanghai
-LOCAL_DATA_DIR=    # 数据仓库在学习者电脑上的路径
+LOCAL_DATA_DIR=    # 数据仓库在学习者电脑上的路径，例如 Cairn/data
 ```
+
+本地建议使用 Cairn/system 和 Cairn/data 两个独立仓库目录。服务器内部继续使用 learning 用户、/home/learning/system、/home/learning/data、learning-mcp 服务和 learning 客户端连接名；仓库名称不作为服务器目录名。
 
 ## 工作方式
 

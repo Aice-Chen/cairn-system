@@ -1,6 +1,6 @@
-# 学习系统源码仓库
+# Cairn 系统源码仓库
 
-这个仓库是学习系统本身：MCP 服务端、学习协作说明、格式规范和数据仓库模板。它不包含任何个人学习数据，个人数据在单独的私有数据仓库中。
+这个仓库是 Cairn 系统本身（cairn-system）：MCP 服务端、学习协作说明、格式规范和数据仓库模板。它不包含任何个人学习数据，个人数据在单独的私有数据仓库 cairn-data 中。
 
 - 修改前先读 DESIGN.md；涉及服务端的，再读 server/SPEC.md。按 DESIGN.md"修改系统的方式"，先向学习者说明要改什么、为什么，确认后再动手，改完追加决策记录。
 - harness/guide.md 和 harness/standards/ 是交给学习会话中的模型的说明，由 start_session 和 read_standard 返回。在本仓库里做开发时，它们是要维护的内容。

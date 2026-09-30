@@ -1,8 +1,18 @@
-# 学习系统
+# Cairn
 
-一个远程的 AI 辅助学习系统。AI 读取学习材料和学习者的状态，从自然交流中觉察理解程度，有针对性地讲解，并在每次学习后记录观察。学习状态保存在自己的服务器上，claude.ai、ChatGPT、手机，以及本地的 Claude Code 和 Codex 都通过同一个 MCP 服务读写。
+Cairn 是一个远程的 AI 辅助学习系统。AI 读取学习材料和学习者的状态，从自然交流中觉察理解程度，有针对性地讲解，并在每次学习后记录观察。学习状态保存在自己的服务器上，claude.ai、ChatGPT、手机，以及本地的 Claude Code 和 Codex 都通过同一个 MCP 服务读写。
 
-系统分为两个仓库：本仓库是系统本身，可以公开；个人数据在由 templates/data/ 建立的私有数据仓库中。
+系统分为两个独立的 Git 仓库：`cairn-system` 是本仓库，可以公开；`cairn-data` 是由 templates/data/ 建立的私有个人数据仓库。
+
+本地将两个仓库放在同一个 Cairn 目录下：
+
+```text
+Cairn/
+├── system/    cairn-system：程序、协作说明、规范和模板
+└── data/      cairn-data：个人资料、学习状态、材料和本地笔记
+```
+
+开发系统时打开 `system/`，学习时打开 `data/`。父目录 Cairn 只用于组织文件，不是第三个 Git 仓库。服务器继续使用 `/home/learning/system` 和 `/home/learning/data`；MCP 连接名 `learning`、服务及命令名 `learning-mcp`、环境变量 `LEARNING_*` 均沿用现有标识。
 
 | 位置 | 内容 |
 |---|---|

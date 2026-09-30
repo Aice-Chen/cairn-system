@@ -1,7 +1,9 @@
-# learning MCP 服务端规格
+# Cairn MCP 服务端规格
 
 本文件是服务端的依据：修改服务端代码时以它为准，改动工具行为时先改这里。
 设计理由见仓库根目录的 DESIGN.md。
+
+Cairn 是项目名称；运行包与命令 `learning-mcp`、Python 模块 `learning_mcp`、MCP 连接名 `learning` 和环境变量 `LEARNING_*` 继续沿用。仓库改名不改变工具接口或数据格式。
 
 ## 职责与目录
 
