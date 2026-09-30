@@ -1,0 +1,9 @@
+# 服务端
+server/.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+*.env
+
+.DS_Store
+Thumbs.db

@@ -1,0 +1,9 @@
+# 学习材料由 Syncthing 同步，不进 git
+sources/*
+!sources/.gitkeep
+
+# 个人笔记只保留在本地
+/notes/
+
+.DS_Store
+Thumbs.db
