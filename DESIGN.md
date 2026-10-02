@@ -134,3 +134,4 @@ Cairn 分为 `cairn-system`（系统）和 `cairn-data`（个人数据）两个�
   - 个人偏好从协作说明中移出，放入数据仓库的 profile/，并约定 profile/ 与协作说明不一致时以 profile/ 为准；profile/ 按文件夹整体读取，学习者可以自由组织其中的文件。
   - 数据仓库引入 FORMAT_VERSION 和启动时的版本检查，为以后改动数据格式时的迁移做准备；迁移执行器等到第一次需要时再加入。
   - 项目命名为 Cairn，两个仓库分别命名为 cairn-system 和 cairn-data，本地归组到 Cairn/system 与 Cairn/data。保留两个独立 Git 仓库及其提交历史；服务器的 learning 用户、目录、服务、命令、环境变量和客户端连接标识沿用。此次命名调整不改变工具行为、harness 协作规则或数据格式。
+- 2026-10-03：将 `refactor-2026-10.md` 和 `cairn-handoff-2026-10.md` 原样归档到 `docs/design/`，保存插件化重构的讨论依据与交接上下文。本次仅归档资料；重构结论并入现行设计及实现时，按确认后的方案另行推进。
