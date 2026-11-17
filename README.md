@@ -2,6 +2,8 @@
 
 Cairn 是一个远程的 AI 辅助学习系统。AI 读取学习材料和学习者的状态，从自然交流中觉察理解程度，有针对性地讲解，并在每次学习后记录观察。学习状态保存在自己的服务器上，claude.ai、ChatGPT、手机，以及本地的 Claude Code 和 Codex 都通过同一个 MCP 服务读写。
 
+> 下一版（基础版）以客户端插件的形式重新设计，目前处于设计阶段，尚未实现，文档入口是 [docs/README.md](docs/README.md)。本文件说明的是现行版本。
+
 系统分为两个独立的 Git 仓库：`cairn-system` 是本仓库，可以公开；`cairn-data` 是由 templates/data/ 建立的私有个人数据仓库。
 
 本地将两个仓库放在同一个 Cairn 目录下：
@@ -21,6 +23,7 @@ Cairn/
 | harness/standards/ | 数据文件的格式规范 |
 | templates/data/ | 数据仓库模板 |
 | templates/project-instructions.md | 网页端 Project 指令 |
+| docs/README.md | 基础版（设计中）的文档总览，由此进入各层次的设计文档 |
 | docs/DEPLOY.md | 部署与客户端接入 |
 | docs/CODEX_DEPLOY.md | 交给 Codex 执行的部署任务 |
 | server/ | MCP 服务端，SPEC.md 为工具规格 |
