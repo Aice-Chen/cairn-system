@@ -27,7 +27,7 @@ Cairn 使用两个相互独立的 git 仓库。
 │   ├── progress/             学习进度，每个学习项目一页
 │   ├── mastery/              掌握状态，页面的粒度和子目录由模型决定
 │   └── traits/               学习特征
-├── records/                学习记录，按日期归档
+├── records/                学习记录，按日期归档，每天一个文件
 ├── sources/                学习材料，每个学习项目一个目录，不纳入 git
 └── FORMAT_VERSION          记忆格式的版本号
 ```
