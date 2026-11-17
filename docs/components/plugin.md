@@ -16,7 +16,7 @@ cairn-system/
 │       └── references/          学习方法、记忆格式说明
 ├── .mcp.json                    MCP 服务端的连接声明
 ├── commands/                    增强：开始学习、新建学习项目、初始化数据仓库
-├── hooks/                       增强：上下文压缩前提示保存尚未记录的观察
+├── hooks/                       增强：为工具调用填入对话标识；上下文压缩前提示保存尚未记录的观察
 ├── agents/                      增强：供扩展模块使用
 ├── server/                      MCP 服务端源码（Python，在 v1 的基础上修改）
 ├── templates/
@@ -48,10 +48,20 @@ cairn-system/
 | 命令 | 支持 | 支持 | 需要改写为技能 | 需要改写为技能 |
 | 钩子 | 支持 | 仅 Cowork | 不支持 | 支持 |
 | 子代理 | 支持 | 仅 Cowork | 不支持 | 需要改写为技能 |
+| 对话标识 | 由插件的钩子填入工具参数 | Cowork 由插件的钩子填入；聊天界面不提供 | 请求中自带 | 请求中自带 |
 
 跨客户端的基线是技能加 MCP 服务端，命令、钩子和子代理作为增强。另有两点需要注意：OpenAI 的插件门户只接受远程的 MCP 服务端，并且不展开 `userConfig`，配置需要以其他方式提供；技能的表述需要与厂商无关，同一份技能文件才能用于不同的客户端。
 
 上表依据 2026 年 10 月核对的平台事实，以及 2026-11-15 查阅的 [Claude Code 插件参考](https://code.claude.com/docs/en/plugins-reference)、[OpenAI 插件概念](https://developers.openai.com/plugins/concepts/plugins.md)和 [OpenAI 插件提交指南](https://developers.openai.com/plugins/guides/submit-claude-plugin.md)整理。各客户端的实际行为需要在实现阶段实测。
+
+“对话标识”一行说明服务端取得对话标记时可以使用的来源（见[服务端](server.md)中“对话标记的取得”）。
+
+- Claude Code 和 Cowork 加载插件的钩子。钩子的输入中带有客户端的会话 ID，工具调用之前的钩子可以改写工具参数，因此可以由钩子把会话 ID 填入记忆服务工具的 `conversation` 参数。
+- ChatGPT 在工具调用的 `_meta["openai/session"]` 中提供匿名化的对话标识。
+- Codex 在工具调用的 `_meta.sessionId` 中提供线程 ID。这一字段见于 2026 年 10 月的实测，文档中没有记载。
+- Claude 应用的聊天界面不加载钩子，请求中也没有对话标识。在这些界面上，对话标记由服务端发放，由模型带上。
+
+这一行依据 2026 年 10 月的实测，以及 2026-11-16 查阅的 [Claude Code 钩子参考](https://code.claude.com/docs/en/hooks)、[Claude 插件构建说明](https://claude.com/docs/plugins/build)和 [OpenAI 插件参考](https://developers.openai.com/plugins/reference)整理。钩子的做法尚未实测，各标识在长时间内是否稳定也需要在实现阶段确认。
 
 ## 内容的放置
 
